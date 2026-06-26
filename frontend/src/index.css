@@ -1,0 +1,18 @@
+/* Pull in the three Google Fonts we named in tailwind.config.js */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+/* These three lines activate Tailwind.
+   @tailwind base    — resets browser defaults
+   @tailwind components — lets you create reusable class groups
+   @tailwind utilities  — generates all the utility classes like p-4, text-lg */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Respect users who prefer no animation (accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
