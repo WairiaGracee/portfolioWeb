@@ -68,10 +68,17 @@ TEMPLATES = [{
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 # ── DATABASE ──────────────────────────────────────────────────────────────────
-# Read the full Supabase connection URL from .env
-DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL'))
-}
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(config('DATABASE_URL'))
+    }
 
 # ── EMAIL ─────────────────────────────────────────────────────────────────────
 # These settings tell Django how to send emails via Gmail

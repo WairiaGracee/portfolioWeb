@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Download, Mail } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
+import heroBg from '../assets/hero-bg.jpg';
 
 // ── DATA ──────────────────────────────────────────────────────────────────────
 // Keeping data at the top makes it easy to update without hunting through JSX
@@ -21,123 +22,139 @@ const STATS = [
 // ── COMPONENT ─────────────────────────────────────────────────────────────────
 export default function Home() {
   // Split the name into individual characters so we can animate each one
-  const nameChars = 'Grace Wanjiru'.split('');
+  const nameChars = 'Gracejane Wairia'.split('');
 
   return (
     // min-h-screen = at least full viewport height
     // bg-linen = our custom off-white background
     <main className="min-h-screen bg-linen">
 
-      {/* ── HERO ── */}
-      <section className="
-        min-h-screen flex flex-col justify-center
-        max-w-5xl mx-auto px-5 pt-24 pb-12
-      ">
-        {/* Eyebrow label */}
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="font-mono text-xs text-olive tracking-widest uppercase mb-5"
-        >
-          Full-Stack Developer · Nairobi, Kenya
-        </motion.p>
+    {/* ── HERO ── */}
+      <section
+        className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden"
+        style={{
+          backgroundImage: `
+            linear-gradient(
+              to bottom,
+              rgba(20, 24, 16, 0.55) 0%,
+              rgba(20, 24, 16, 0.65) 50%,
+              rgba(20, 24, 16, 0.85) 100%
+            ),
+            url(${heroBg})
+          `,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
 
-        {/* Animated name — each letter fades + slides up with a stagger */}
-        <h1 className="
-          font-display font-bold text-ink leading-none mb-1
-          text-5xl sm:text-7xl lg:text-8xl tracking-tight
-        ">
-          {nameChars.map((char, i) => (
-            <motion.span
-              key={i}
-              // Each letter starts invisible and 20px below
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              // Each letter starts 40ms after the previous one (stagger)
-              transition={{ delay: 0.4 + i * 0.04, duration: 0.4 }}
-              // inline-block needed so y transform works on individual letters
-              className={char === ' ' ? 'inline' : 'inline-block'}
-            >
-              {char === ' ' ? '\u00A0' : char}
-            </motion.span>
-          ))}
-        </h1>
+        <div className="max-w-5xl mx-auto px-5 pt-24 pb-12 w-full">
+          {/* Eyebrow label */}
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="font-mono text-xs text-olive tracking-widest uppercase mb-5"
+          >
+            Full-Stack Developer · Nairobi, Kenya
+          </motion.p>
 
-        {/* The signature underline — the one bold visual moment */}
-        <div className="overflow-hidden h-1 mb-10">
+          {/* Animated name — each letter fades + slides up with a stagger */}
+          <h1 className="
+            font-display font-bold text-ink leading-none mb-1
+            text-5xl sm:text-7xl lg:text-8xl tracking-tight
+          ">
+            {nameChars.map((char, i) => (
+              <motion.span
+                key={i}
+                // Each letter starts invisible and 20px below
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                // Each letter starts 40ms after the previous one (stagger)
+                transition={{ delay: 0.4 + i * 0.04, duration: 0.4 }}
+                // inline-block needed so y transform works on individual letters
+                className={char === ' ' ? 'inline' : 'inline-block'}
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </motion.span>
+            ))}
+          </h1>
+          {/* The signature underline — the one bold visual moment */}
+          <div className="overflow-hidden h-1 mb-10">
+            <motion.div
+              className="h-0.5 bg-olive origin-left"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 1.1, duration: 0.7, ease: 'easeOut' }}
+            />
+          </div>
+
+          {/* Tagline */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.4 }}
+            className="
+              font-sans text-ink-soft leading-relaxed mb-10
+              text-base sm:text-lg max-w-xl
+            "
+          >
+            I build digital products that are fast, accessible, and actually work.
+            From idea to deployed — I handle the full stack.
+          </motion.p>
+
+          {/* CTA buttons */}
           <motion.div
-            className="h-0.5 bg-olive origin-left"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 1.1, duration: 0.7, ease: 'easeOut' }}
-          />
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.6 }}
+            className="flex flex-wrap gap-4 mb-16"
+          >
+            {/* Primary CTA */}
+            <Link
+              to="/work"
+              className="
+                flex items-center gap-2 px-6 py-3
+                bg-olive text-cream text-sm font-semibold rounded-sm
+                hover:bg-olive-dark transition-colors duration-200
+              "
+            >
+              See my work <ArrowRight size={16} />
+            </Link>
+
+            {/* Secondary CTA */}
+            <a
+              href="/grace-cv.pdf"
+              download
+              className="
+                flex items-center gap-2 px-6 py-3
+                border border-taupe text-ink text-sm font-medium rounded-sm
+                hover:border-olive transition-colors duration-200
+              "
+            >
+              <Download size={16} /> Download CV
+            </a>
+          </motion.div>
+          
+          {/* Stats */}
+          <FadeIn delay={0.1}>
+            <div className="
+              grid grid-cols-3 gap-6
+              border-t border-taupe pt-8 max-w-xs
+            ">
+              {STATS.map(({ value, label }) => (
+                <div key={label}>
+                  <p className="font-display text-3xl font-bold text-olive leading-none mb-1">
+                    {value}
+                  </p>
+                  <p className="font-sans text-xs text-ink-soft">{label}</p>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
         </div>
 
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.4 }}
-          className="
-            font-sans text-ink-soft leading-relaxed mb-10
-            text-base sm:text-lg max-w-xl
-          "
-        >
-          I build digital products that are fast, accessible, and actually work.
-          From idea to deployed — I handle the full stack.
-        </motion.p>
-
-        {/* CTA buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.6 }}
-          className="flex flex-wrap gap-4 mb-16"
-        >
-          {/* Primary CTA */}
-          <Link
-            to="/work"
-            className="
-              flex items-center gap-2 px-6 py-3
-              bg-olive text-cream text-sm font-semibold rounded-sm
-              hover:bg-olive-dark transition-colors duration-200
-            "
-          >
-            See my work <ArrowRight size={16} />
-          </Link>
-
-          {/* Secondary CTA */}
-          <a
-            href="/grace-cv.pdf"
-            download
-            className="
-              flex items-center gap-2 px-6 py-3
-              border border-taupe text-ink text-sm font-medium rounded-sm
-              hover:border-olive transition-colors duration-200
-            "
-          >
-            <Download size={16} /> Download CV
-          </a>
-        </motion.div>
-
-        {/* Stats */}
-        <FadeIn delay={0.1}>
-          <div className="
-            grid grid-cols-3 gap-6
-            border-t border-taupe pt-8 max-w-xs
-          ">
-            {STATS.map(({ value, label }) => (
-              <div key={label}>
-                <p className="font-display text-3xl font-bold text-olive leading-none mb-1">
-                  {value}
-                </p>
-                <p className="font-sans text-xs text-ink-soft">{label}</p>
-              </div>
-            ))}
-          </div>
-        </FadeIn>
-      </section>
+    </section>
 
       {/* ── SKILLS STRIP ── */}
       <section className="bg-nude-card border-y border-taupe py-12 px-5">
