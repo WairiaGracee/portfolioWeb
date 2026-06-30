@@ -1,14 +1,15 @@
-# This file is the "table of contents" for all URLs in the Django project.
-# Django reads this when a request comes in and finds the right view to call.
-
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    # The built-in admin panel — visit /admin/ in your browser
     path('admin/', admin.site.urls),
-
-    # Any URL starting with /api/contact/ is handled by the contact app
-    # include() delegates to contact/urls.py
     path('api/contact/', include('contact.urls')),
+    path('api/', include('projects.urls')),   # ← new: /api/projects/ and /api/testimonials/
 ]
+
+# Serve uploaded images during development
+# (in production, Railway/Render handle this differently — covered in deployment notes)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

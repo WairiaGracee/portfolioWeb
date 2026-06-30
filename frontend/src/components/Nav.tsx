@@ -15,19 +15,9 @@ const NAV_LINKS = [
 export default function Nav() {
   // open = whether the mobile menu drawer is showing
   const [open, setOpen] = useState(false);
-  // scrolled = whether the user has scrolled down (for background blur)
-  const [scrolled, setScrolled] = useState(false);
 
   // useLocation gives us the current URL path, e.g. "/about"
   const location = useLocation();
-
-  // Listen to scroll events — add a frosted glass background when scrolled
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    // Cleanup: remove the listener when Nav unmounts
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []); // [] = run once on mount
 
   // Close the mobile menu whenever the page changes
   useEffect(() => {
@@ -38,11 +28,7 @@ export default function Nav() {
     <header className={`
       fixed top-0 left-0 right-0 z-50 px-5
       transition-all duration-300
-      ${scrolled
-        ? 'bg-linen/95 backdrop-blur-md border-b border-taupe'
-        : 'bg-transparent'
-      }
-    `}>
+      bg-linen/95 backdrop-blur-md border-b border-taupe`}>
       <nav className="max-w-5xl mx-auto flex items-center justify-between h-16">
 
         {/* Logo — clicking it always goes home */}
@@ -60,7 +46,7 @@ export default function Nav() {
                 <Link
                   to={path}
                   className={`
-                    relative text-sm font-medium tracking-wide no-underline
+                    relative text-base font-robotoCondensed tracking-wide no-underline
                     transition-colors duration-200
                     ${isActive ? 'text-olive' : 'text-ink-soft hover:text-ink'}
                   `}
@@ -84,8 +70,8 @@ export default function Nav() {
               href="/grace-cv.pdf"
               download
               className="
-                px-4 py-2 bg-olive text-cream text-xs font-semibold
-                uppercase tracking-widest rounded-sm
+                px-4 py-2 bg-olive text-cream text-sm font-semibold
+                uppercase tracking-widest rounded-sm font-robotoCondensed
                 hover:bg-olive-dark transition-colors duration-200
               "
             >

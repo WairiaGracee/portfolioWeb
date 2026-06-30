@@ -14,9 +14,9 @@ const SKILLS = [
 ];
 
 const STATS = [
-  { value: '3+',  label: 'Years building'   },
-  { value: '12',  label: 'Projects shipped' },
-  { value: '5',   label: 'Happy clients'    },
+  { value: '1',  label: 'Year building'   },
+  { value: '10',  label: 'Projects shipped' },
+  { value: '2',   label: 'Happy clients'    },
 ];
 
 // ── COMPONENT ─────────────────────────────────────────────────────────────────
@@ -37,7 +37,7 @@ export default function Home() {
             linear-gradient(
               to bottom,
               rgba(20, 24, 16, 0.55) 0%,
-              rgba(20, 24, 16, 0.65) 50%,
+              rgba(20, 24, 16, 0.75) 50%,
               rgba(20, 24, 16, 0.85) 100%
             ),
             url(${heroBg})
@@ -45,6 +45,7 @@ export default function Home() {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed'
         }}
       >
 
@@ -54,14 +55,14 @@ export default function Home() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="font-mono text-xs text-olive tracking-widest uppercase mb-5"
+            className="font-mono text-xs text-cream tracking-widest uppercase mb-5"
           >
             Full-Stack Developer · Nairobi, Kenya
           </motion.p>
 
           {/* Animated name — each letter fades + slides up with a stagger */}
           <h1 className="
-            font-display font-bold text-ink leading-none mb-1
+            font-display font-bold text-taupe leading-none mb-1
             text-5xl sm:text-7xl lg:text-8xl tracking-tight
           ">
             {nameChars.map((char, i) => (
@@ -95,7 +96,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.4 }}
             className="
-              font-sans text-ink-soft leading-relaxed mb-10
+              font-sans text-linen leading-relaxed mb-10
               text-base sm:text-lg max-w-xl
             "
           >
@@ -128,14 +129,14 @@ export default function Home() {
               download
               className="
                 flex items-center gap-2 px-6 py-3
-                border border-taupe text-ink text-sm font-medium rounded-sm
+                border border-taupe text-taupe text-sm font-medium rounded-sm
                 hover:border-olive transition-colors duration-200
               "
             >
               <Download size={16} /> Download CV
             </a>
           </motion.div>
-          
+
           {/* Stats */}
           <FadeIn delay={0.1}>
             <div className="
@@ -144,7 +145,7 @@ export default function Home() {
             ">
               {STATS.map(({ value, label }) => (
                 <div key={label}>
-                  <p className="font-display text-3xl font-bold text-olive leading-none mb-1">
+                  <p className="font-display text-3xl font-bold text-taupe leading-none mb-1">
                     {value}
                   </p>
                   <p className="font-sans text-xs text-ink-soft">{label}</p>
@@ -157,19 +158,22 @@ export default function Home() {
     </section>
 
       {/* ── SKILLS STRIP ── */}
-      <section className="bg-nude-card border-y border-taupe py-12 px-5">
+      <section className="bg-nude-card border-y rounded-br-3xl rounded-bl-3xl border-taupe py-12 px-5">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
-            <p className="font-mono text-xs text-olive tracking-widest uppercase mb-6">
-              What I work with
+            <p className="font-robotoCondensed text-xl text-olive tracking-widest uppercase mb-8">
+              Current Skills:
             </p>
           </FadeIn>
           <div className="flex flex-wrap gap-3">
             {SKILLS.map((skill, i) => (
               <FadeIn key={skill} delay={i * 0.06}>
                 <span className="
-                  px-3 py-2 font-mono text-xs text-ink-soft
+                  px-7 py-6 font-oswald text-sm tracking-wider text-ink-soft
                   border border-taupe rounded-sm bg-linen
+                  cursor-pointer
+                  transition-colors duration-300
+                  hover:bg-olive hover:text-cream hover:border-olive
                 ">
                   {skill}
                 </span>
@@ -200,7 +204,7 @@ export default function Home() {
               <Mail size={16} /> Get in touch
             </Link>
             <a
-              href="https://github.com/gracewanjiru"
+              href="https://github.com/WairiaGracee/"
               target="_blank"
               rel="noopener noreferrer"
               className="
@@ -216,9 +220,9 @@ export default function Home() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="border-t border-taupe py-6 text-center">
+      <footer className="border-t rounded-tr-3xl rounded-tl-3xl border-taupe py-6 text-center">
         <p className="font-mono text-xs text-taupe tracking-wider">
-          © 2025 Grace Wanjiru · React + TypeScript + Django
+          © 2026 Gracejane Wairia
         </p>
       </footer>
     </main>

@@ -15,7 +15,7 @@ module.exports = {
         olive:     "#6B7C5C",   // primary green accent
         "olive-dark": "#4A5740",// hover state for olive
         ink:       "#2C2A26",   // near-black for headings
-        "ink-soft":"#5A5650",   // softer for body text
+        "ink-soft":"#6e665a",   // softer for body text
         cream:     "#FDFCF9",   // pure off-white
       },
       fontFamily: {
@@ -25,6 +25,8 @@ module.exports = {
         sans: ["'Inter'", "sans-serif"],
         // Mono = code tags, labels (DM Mono — technical feel)
         mono: ["'DM Mono'", "monospace"],
+        oswald: ["'Oswald'", "sans-serif"],
+        robotoCondensed: ["'Roboto Condensed'", "sans-serif"]
       },
     },
   },

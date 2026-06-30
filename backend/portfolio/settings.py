@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'corsheaders',      # allows React (port 3000) to call Django (port 8000)
 
     # Our own apps
-    'contact',          # the contact form feature
+    'contact',
+    'projects',
 ]
 
 MIDDLEWARE = [
@@ -113,3 +114,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ── MEDIA FILES (uploaded images) ──────────────────────────────────────────
+# MEDIA_URL is the public path browsers use to access uploaded files
+# MEDIA_ROOT is the actual folder on your server's disk where files are saved
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
